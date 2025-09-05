@@ -2,7 +2,7 @@
 
 A stunning cyberpunk-style animated background effect featuring matrix rain, interactive particles, and network visualizations. Perfect for gaming websites, tech portfolios, or any project that needs a futuristic aesthetic.
 
-![CyberMatrix Particles Demo](https://img.shields.io/badge/Demo-Interactive-brightgreen)
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Available-brightgreen)](https://arsanjani.github.io/CyberMatrix-Particles/)
 ![Version](https://img.shields.io/badge/Version-1.0.0-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
@@ -253,12 +253,16 @@ CyberMatrix-Particles/
 
 ## 🎮 Interactive Demo
 
-Open `demo.html` in your browser to see the effect in action with live controls for:
+🌐 **[Live Demo](https://arsanjani.github.io/CyberMatrix-Particles/)** - Experience the effect in action!
+
+The live demo includes interactive controls for:
 
 - Toggling effects on/off
 - Adjusting colors and speeds
 - Switching between presets
 - Real-time configuration changes
+
+You can also open `demo.html` locally in your browser for offline testing.
 
 ## 🔧 Advanced Usage
 
@@ -366,9 +370,9 @@ Contributions are welcome! Please feel free to submit issues and pull requests.
 
 ## 🔗 Links
 
-- [Interactive Demo](./demo.html)
-- [Source Code](.)
-- [Report Issues](../../issues)
+- [🌐 Live Demo](https://arsanjani.github.io/CyberMatrix-Particles/) - Interactive online demo
+- [📂 Source Code](.) - Browse the repository
+- [🐛 Report Issues](../../issues) - Found a bug? Let us know!
 
 ## 🎉 Credits
 
