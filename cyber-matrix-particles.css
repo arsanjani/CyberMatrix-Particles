@@ -1,0 +1,221 @@
+/**
+ * CyberMatrix Particles Background Effect - CSS Styles
+ * Provides the styling for the cyber security themed background
+ * 
+ * @author CyberMatrix Particles
+ * @version 1.0.0
+ * @license MIT
+ */
+
+/* Base body styles for the cyber background */
+body.cyber-matrix-enabled {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #0a192f 100%);
+    position: relative;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* Ensure the canvas is properly layered */
+#cyber-matrix-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Cyber security glow animation */
+@keyframes cyber-glow {
+    0% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0.7;
+        transform: scale(1.01);
+    }
+}
+
+/* Optional cyber-themed container styles */
+.cyber-container {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    box-shadow: 
+        0 8px 32px rgba(26, 90, 31, 0.15),
+        0 4px 16px rgba(44, 90, 160, 0.15),
+        2px 4px 8px 0px rgba(0, 38, 77, 0.09);
+    border: 1px solid rgba(26, 90, 31, 0.2);
+}
+
+/* Enhanced cyber container with glow effect */
+.cyber-container.enhanced {
+    position: relative;
+}
+
+.cyber-container.enhanced::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+        rgba(26, 90, 31, 0.15), 
+        rgba(44, 90, 160, 0.15), 
+        rgba(204, 68, 68, 0.15), 
+        rgba(26, 90, 31, 0.15));
+    border-radius: 15px;
+    z-index: -1;
+    opacity: 0.5;
+    animation: cyber-glow 3s ease-in-out infinite alternate;
+}
+
+/* Cyber-themed form inputs */
+.cyber-input {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 255, 65, 0.3);
+    background-color: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+    font-family: 'Courier New', monospace;
+}
+
+.cyber-input:focus {
+    outline: none;
+    box-shadow: 
+        0 0 10px rgba(0, 255, 65, 0.4),
+        0 0 20px rgba(0, 255, 65, 0.2);
+    border-color: rgba(0, 255, 65, 0.6);
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+/* Cyber-themed buttons */
+.cyber-button {
+    padding: 10px 24px;
+    border-radius: 20px;
+    background: linear-gradient(45deg, #031142, #0f3460);
+    color: #00ff41;
+    border: 1px solid #00ff41;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cyber-button:hover {
+    background: linear-gradient(45deg, #00ff41, #0099cc);
+    color: #031142;
+    box-shadow: 
+        0 0 15px rgba(0, 255, 65, 0.5),
+        0 0 30px rgba(0, 255, 65, 0.3);
+    transform: translateY(-2px);
+}
+
+.cyber-button:active {
+    transform: translateY(0);
+}
+
+/* Cyber-themed text styles */
+.cyber-text {
+    font-family: 'Courier New', monospace;
+    color: #00ff41;
+    text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+}
+
+.cyber-text.heading {
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+}
+
+.cyber-text.subheading {
+    font-size: 1.2rem;
+    opacity: 0.8;
+    margin-bottom: 0.5rem;
+}
+
+/* Utility classes for z-index management */
+.cyber-above {
+    position: relative;
+    z-index: 10;
+}
+
+.cyber-interactive {
+    position: relative;
+    z-index: 100;
+    pointer-events: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .cyber-container {
+        margin: 1rem;
+        padding: 1rem;
+    }
+    
+    .cyber-text.heading {
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+    }
+    
+    .cyber-button {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .cyber-container {
+        border-radius: 10px;
+        margin: 0.5rem;
+    }
+    
+    .cyber-text.heading {
+        font-size: 1.2rem;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .cyber-container {
+        background: rgba(255, 255, 255, 0.98);
+        border: 2px solid #00ff41;
+    }
+    
+    .cyber-input {
+        border: 2px solid #00ff41;
+        background-color: white;
+    }
+    
+    .cyber-button {
+        border: 2px solid #00ff41;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    @keyframes cyber-glow {
+        0%, 100% {
+            opacity: 0.5;
+            transform: scale(1);
+        }
+    }
+    
+    .cyber-container.enhanced::before {
+        animation-duration: 6s;
+    }
+    
+    .cyber-button:hover {
+        transform: none;
+    }
+}

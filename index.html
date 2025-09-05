@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberMatrix Particles - Interactive Demo</title>
+    <link rel="stylesheet" href="cyber-matrix-particles.css">
+    <style>
+        /* Demo-specific styles */
+        body {
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .demo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+
+        .demo-content {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .controls-panel {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid #00ff41;
+            max-width: 300px;
+            max-height: 80vh;
+            overflow-y: auto;
+            z-index: 1000;
+            font-size: 0.8rem;
+        }
+
+        .controls-panel h3 {
+            color: #00ff41;
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .control-group {
+            margin-bottom: 1rem;
+        }
+
+        .control-group label {
+            display: block;
+            color: #00ff41;
+            margin-bottom: 0.3rem;
+            font-size: 0.75rem;
+        }
+
+        .control-group input,
+        .control-group select {
+            width: 100%;
+            padding: 0.3rem;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid #00ff41;
+            color: #00ff41;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.7rem;
+        }
+
+        .control-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 0.5rem;
+        }
+
+        .control-group input[type="color"] {
+            height: 30px;
+            cursor: pointer;
+        }
+
+        .toggle-controls {
+            position: fixed;
+            top: 20px;
+            right: 340px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #00ff41;
+            border-radius: 5px;
+            padding: 0.5rem;
+            color: #00ff41;
+            cursor: pointer;
+            z-index: 1001;
+            font-family: 'Courier New', monospace;
+            font-size: 0.7rem;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 
+                0 8px 32px rgba(26, 90, 31, 0.15),
+                0 4px 16px rgba(44, 90, 160, 0.15);
+            border: 1px solid rgba(26, 90, 31, 0.2);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 65, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 255, 65, 0.2);
+            border-color: rgba(0, 255, 65, 0.6);
+        }
+
+        .feature-card h3 {
+            color: #031142;
+            margin-top: 0;
+        }
+
+        .github-link {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: linear-gradient(45deg, #031142, #0f3460);
+            color: #00ff41;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            text-decoration: none;
+            border: 1px solid #00ff41;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .github-link:hover {
+            background: linear-gradient(45deg, #00ff41, #0099cc);
+            color: #031142;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .controls-panel {
+                right: 10px;
+                top: 10px;
+                max-width: 250px;
+                font-size: 0.7rem;
+            }
+
+            .toggle-controls {
+                right: 270px;
+                top: 10px;
+            }
+
+            .demo-content {
+                padding: 1rem;
+            }
+
+            .github-link {
+                bottom: 10px;
+                left: 10px;
+                font-size: 0.7rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body class="cyber-matrix-enabled">
+    <div class="demo-container">
+        <div class="demo-content">
+            <div class="info-card">
+                <h1 class="cyber-text heading">CyberMatrix Particles</h1>
+                <p class="cyber-text subheading">Interactive Cyberpunk Background Effect</p>
+                <p>Experience the future with this dynamic, customizable background effect featuring matrix rain, interactive particles, and network visualizations. Move your mouse around to interact with the particles!</p>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>🌧️ Matrix Rain</h3>
+                    <p>Authentic matrix-style falling characters with customizable speed and appearance</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🎯 Interactive Particles</h3>
+                    <p>Particles that respond to mouse movement with realistic physics and animation</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🌐 Network Connections</h3>
+                    <p>Dynamic network visualization with data packet effects and glowing connections</p>
+                </div>
+                <div class="feature-card">
+                    <h3>⚙️ Fully Configurable</h3>
+                    <p>Customize colors, speeds, particle density, and all visual effects</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📱 Responsive Design</h3>
+                    <p>Optimized for all screen sizes and device types</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🎨 CSS Integration</h3>
+                    <p>Includes themed CSS classes for seamless integration</p>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h2 class="cyber-text">Quick Start</h2>
+                <div style="text-align: left; background: #1a1a2e; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                    <code style="color: #00ff41; font-family: 'Courier New', monospace;">
+                        // Basic usage<br>
+                        const particles = new CyberMatrixParticles();<br><br>
+                        // With custom options<br>
+                        const particles = new CyberMatrixParticles({<br>
+                        &nbsp;&nbsp;particleColor: '#ff6b6b',<br>
+                        &nbsp;&nbsp;particleDistance: 80,<br>
+                        &nbsp;&nbsp;showMatrixRain: true<br>
+                        });
+                    </code>
+                </div>
+                <button class="cyber-button" onclick="toggleDemo()">Toggle Demo</button>
+                <button class="cyber-button" onclick="resetDemo()">Reset Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <button class="toggle-controls" onclick="toggleControls()">⚙️ Controls</button>
+
+    <div class="controls-panel" id="controlsPanel" style="display: none;">
+        <h3>Live Controls</h3>
+        
+        <div class="control-group">
+            <label>
+                <input type="checkbox" id="showMatrixRain" checked> Matrix Rain
+            </label>
+        </div>
+        
+        <div class="control-group">
+            <label>
+                <input type="checkbox" id="showGrid" checked> Grid
+            </label>
+        </div>
+        
+        <div class="control-group">
+            <label>
+                <input type="checkbox" id="showConnections" checked> Network Connections
+            </label>
+        </div>
+        
+        <div class="control-group">
+            <label for="particleDistance">Particle Distance:</label>
+            <input type="range" id="particleDistance" min="40" max="100" value="60">
+            <span id="particleDistanceValue">60</span>
+        </div>
+        
+        <div class="control-group">
+            <label for="mouseRadius">Mouse Radius:</label>
+            <input type="range" id="mouseRadius" min="50" max="200" value="120">
+            <span id="mouseRadiusValue">120</span>
+        </div>
+        
+        <div class="control-group">
+            <label for="particleColor">Particle Color:</label>
+            <input type="color" id="particleColor" value="#00ff41">
+        </div>
+        
+        <div class="control-group">
+            <label for="particleHoverColor">Hover Color:</label>
+            <input type="color" id="particleHoverColor" value="#ff6b6b">
+        </div>
+        
+        <div class="control-group">
+            <label for="matrixSpeed">Matrix Speed:</label>
+            <input type="range" id="matrixSpeed" min="0.5" max="5" step="0.5" value="2">
+            <span id="matrixSpeedValue">2</span>
+        </div>
+        
+        <div class="control-group">
+            <label for="animationSpeed">Animation Speed:</label>
+            <input type="range" id="animationSpeed" min="0.005" max="0.02" step="0.001" value="0.01">
+            <span id="animationSpeedValue">0.01</span>
+        </div>
+        
+        <div class="control-group">
+            <label for="gridSize">Grid Size:</label>
+            <input type="range" id="gridSize" min="25" max="100" value="50">
+            <span id="gridSizeValue">50</span>
+        </div>
+        
+        <div class="control-group">
+            <label for="preset">Presets:</label>
+            <select id="preset">
+                <option value="">Custom</option>
+                <option value="classic">Classic Matrix</option>
+                <option value="neon">Neon Cyberpunk</option>
+                <option value="minimal">Minimal</option>
+                <option value="intense">Intense</option>
+            </select>
+        </div>
+    </div>
+
+    <a href="#" class="github-link">📁 Package Files</a>
+
+    <script src="cyber-matrix-particles.js"></script>
+    <script>
+        // Initialize the effect
+        let cyberEffect = new CyberMatrixParticles();
+        let controlsVisible = false;
+
+        // Control panel functionality
+        function toggleControls() {
+            const panel = document.getElementById('controlsPanel');
+            controlsVisible = !controlsVisible;
+            panel.style.display = controlsVisible ? 'block' : 'none';
+        }
+
+        function toggleDemo() {
+            if (cyberEffect.animationId) {
+                cyberEffect.stop();
+            } else {
+                cyberEffect.start();
+            }
+        }
+
+        function resetDemo() {
+            cyberEffect.destroy();
+            cyberEffect = new CyberMatrixParticles();
+            updateControlValues();
+        }
+
+        function updateControlValues() {
+            document.getElementById('showMatrixRain').checked = cyberEffect.config.showMatrixRain;
+            document.getElementById('showGrid').checked = cyberEffect.config.showGrid;
+            document.getElementById('showConnections').checked = cyberEffect.config.showConnections;
+            document.getElementById('particleDistance').value = cyberEffect.config.particleDistance;
+            document.getElementById('mouseRadius').value = cyberEffect.config.mouseRadius;
+            document.getElementById('particleColor').value = cyberEffect.config.particleColor;
+            document.getElementById('particleHoverColor').value = cyberEffect.config.particleHoverColor;
+            document.getElementById('matrixSpeed').value = cyberEffect.config.matrixSpeed;
+            document.getElementById('animationSpeed').value = cyberEffect.config.animationSpeed;
+            document.getElementById('gridSize').value = cyberEffect.config.gridSize;
+            
+            updateDisplayValues();
+        }
+
+        function updateDisplayValues() {
+            document.getElementById('particleDistanceValue').textContent = document.getElementById('particleDistance').value;
+            document.getElementById('mouseRadiusValue').textContent = document.getElementById('mouseRadius').value;
+            document.getElementById('matrixSpeedValue').textContent = document.getElementById('matrixSpeed').value;
+            document.getElementById('animationSpeedValue').textContent = document.getElementById('animationSpeed').value;
+            document.getElementById('gridSizeValue').textContent = document.getElementById('gridSize').value;
+        }
+
+        // Preset configurations
+        const presets = {
+            classic: {
+                particleColor: '#00ff41',
+                particleHoverColor: '#ffffff',
+                matrixColor: '#00ff41',
+                backgroundGradient: 'linear-gradient(135deg, #000000 0%, #001100 50%, #000000 100%)',
+                showMatrixRain: true,
+                showGrid: false,
+                particleDistance: 60,
+                matrixSpeed: 1.5
+            },
+            neon: {
+                particleColor: '#ff0080',
+                particleHoverColor: '#00ffff',
+                matrixColor: '#ff0080',
+                backgroundGradient: 'linear-gradient(135deg, #0a0a0a 0%, #2e1a2e 25%, #3e164e 50%, #460f60 75%, #2f0a3f 100%)',
+                showMatrixRain: true,
+                showGrid: true,
+                particleDistance: 70,
+                matrixSpeed: 2.5
+            },
+            minimal: {
+                particleColor: '#ffffff',
+                particleHoverColor: '#cccccc',
+                matrixColor: '#666666',
+                backgroundGradient: 'linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%)',
+                showMatrixRain: false,
+                showGrid: true,
+                particleDistance: 80,
+                matrixSpeed: 1
+            },
+            intense: {
+                particleColor: '#ff4444',
+                particleHoverColor: '#ffff44',
+                matrixColor: '#ff4444',
+                backgroundGradient: 'linear-gradient(135deg, #0a0000 0%, #2e0a0a 25%, #3e0a16 50%, #460a0f 75%, #2f0a0a 100%)',
+                showMatrixRain: true,
+                showGrid: true,
+                particleDistance: 40,
+                matrixSpeed: 4
+            }
+        };
+
+        // Event listeners for controls
+        document.getElementById('showMatrixRain').addEventListener('change', function() {
+            cyberEffect.updateConfig({ showMatrixRain: this.checked });
+        });
+
+        document.getElementById('showGrid').addEventListener('change', function() {
+            cyberEffect.updateConfig({ showGrid: this.checked });
+        });
+
+        document.getElementById('showConnections').addEventListener('change', function() {
+            cyberEffect.updateConfig({ showConnections: this.checked });
+        });
+
+        document.getElementById('particleDistance').addEventListener('input', function() {
+            cyberEffect.updateConfig({ particleDistance: parseInt(this.value) });
+            updateDisplayValues();
+        });
+
+        document.getElementById('mouseRadius').addEventListener('input', function() {
+            cyberEffect.updateConfig({ mouseRadius: parseInt(this.value) });
+            updateDisplayValues();
+        });
+
+        document.getElementById('particleColor').addEventListener('change', function() {
+            cyberEffect.updateConfig({ particleColor: this.value });
+        });
+
+        document.getElementById('particleHoverColor').addEventListener('change', function() {
+            cyberEffect.updateConfig({ particleHoverColor: this.value });
+        });
+
+        document.getElementById('matrixSpeed').addEventListener('input', function() {
+            cyberEffect.updateConfig({ matrixSpeed: parseFloat(this.value) });
+            updateDisplayValues();
+        });
+
+        document.getElementById('animationSpeed').addEventListener('input', function() {
+            cyberEffect.updateConfig({ animationSpeed: parseFloat(this.value) });
+            updateDisplayValues();
+        });
+
+        document.getElementById('gridSize').addEventListener('input', function() {
+            cyberEffect.updateConfig({ gridSize: parseInt(this.value) });
+            updateDisplayValues();
+        });
+
+        document.getElementById('preset').addEventListener('change', function() {
+            if (this.value && presets[this.value]) {
+                cyberEffect.updateConfig(presets[this.value]);
+                cyberEffect.canvas.style.background = presets[this.value].backgroundGradient;
+                updateControlValues();
+            }
+        });
+
+        // Initialize control values
+        updateControlValues();
+    </script>
+</body>
+</html>

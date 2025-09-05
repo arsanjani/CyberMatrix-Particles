@@ -1,0 +1,53 @@
+{
+  "name": "cyber-matrix-particles",
+  "version": "1.0.0",
+  "description": "A stunning cyberpunk-style animated background effect featuring matrix rain, interactive particles, and network visualizations",
+  "main": "cyber-matrix-particles.js",
+  "files": [
+    "cyber-matrix-particles.js",
+    "cyber-matrix-particles.css",
+    "README.md",
+    "demo.html"
+  ],
+  "scripts": {
+    "demo": "open demo.html || start demo.html",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "cyberpunk",
+    "matrix",
+    "particles",
+    "background",
+    "animation",
+    "canvas",
+    "interactive",
+    "cybersecurity",
+    "tech",
+    "futuristic",
+    "visualization",
+    "effects"
+  ],
+  "author": "CyberMatrix Particles",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/cyber-matrix-particles.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/cyber-matrix-particles/issues"
+  },
+  "homepage": "https://github.com/yourusername/cyber-matrix-particles#readme",
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie <= 11"
+  ],
+  "devDependencies": {},
+  "dependencies": {},
+  "peerDependencies": {},
+  "optionalDependencies": {}
+}
